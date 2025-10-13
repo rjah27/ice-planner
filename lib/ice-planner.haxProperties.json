@@ -1,0 +1,82 @@
+{
+  "canScale": true,
+  "canPosition": true,
+  "canEditSource": false,
+  "gizmo": {
+    "title": "Ice Planner",
+    "description": "A component for calculating ice hockey team costs per player",
+    "icon": "icons:assessment",
+    "color": "light-blue",
+    "groups": ["Calculator", "Sports", "Finance"],
+    "handles": [
+      {
+        "type": "calculator",
+        "source": "teamName"
+      }
+    ],
+    "meta": {
+      "author": "Jericho P. Reyes"
+    }
+  },
+  "settings": {
+    "configure": [
+      {
+        "property": "teamName",
+        "description": "Team name",
+        "inputMethod": "textfield",
+        "required": false,
+        "icon": "icons:group"
+      },
+      {
+        "property": "iceCostPerHour",
+        "description": "Cost of ice per hour",
+        "inputMethod": "number",
+        "required": false,
+        "icon": "icons:attach-money"
+      },
+      {
+        "property": "hours",
+        "description": "Number of hours",
+        "inputMethod": "number",
+        "required": false,
+        "icon": "icons:schedule"
+      },
+      {
+        "property": "coachCost",
+        "description": "Coach cost",
+        "inputMethod": "number",
+        "required": false,
+        "icon": "icons:person"
+      },
+      {
+        "property": "jerseysCost",
+        "description": "Jerseys cost",
+        "inputMethod": "number",
+        "required": false,
+        "icon": "icons:style"
+      },
+      {
+        "property": "transitionPercent",
+        "description": "Transition fee percentage",
+        "inputMethod": "number",
+        "required": false,
+        "icon": "icons:trending-up"
+      },
+      {
+        "property": "transitionFixed",
+        "description": "Fixed transition fee",
+        "inputMethod": "number",
+        "required": false,
+        "icon": "icons:attach-money"
+      },
+      {
+        "property": "numberOfPlayers",
+        "description": "Number of players",
+        "inputMethod": "number",
+        "required": false,
+        "icon": "icons:group"
+      }
+    ],
+    "advanced": []
+  }
+}

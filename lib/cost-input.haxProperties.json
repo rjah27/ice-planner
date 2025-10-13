@@ -1,0 +1,75 @@
+{
+  "canScale": true,
+  "canPosition": true,
+  "canEditSource": false,
+  "gizmo": {
+    "title": "Cost Input",
+    "description": "A reusable input component with DDD styling",
+    "icon": "icons:text-fields",
+    "color": "grey",
+    "groups": ["Form", "Input"],
+    "handles": [
+      {
+        "type": "input",
+        "source": "value"
+      }
+    ],
+    "meta": {
+      "author": "Jericho P. Reyes"
+    }
+  },
+  "settings": {
+    "configure": [
+      {
+        "property": "label",
+        "description": "Input label",
+        "inputMethod": "textfield",
+        "required": false,
+        "icon": "icons:label"
+      },
+      {
+        "property": "value",
+        "description": "Input value",
+        "inputMethod": "textfield",
+        "required": false,
+        "icon": "icons:text-fields"
+      },
+      {
+        "property": "type",
+        "description": "Input type",
+        "inputMethod": "select",
+        "options": {
+          "text": "Text",
+          "number": "Number",
+          "email": "Email",
+          "password": "Password",
+          "tel": "Phone"
+        },
+        "required": false,
+        "icon": "icons:input"
+      },
+      {
+        "property": "placeholder",
+        "description": "Placeholder text",
+        "inputMethod": "textfield",
+        "required": false,
+        "icon": "icons:text-fields"
+      },
+      {
+        "property": "required",
+        "description": "Required field",
+        "inputMethod": "boolean",
+        "required": false,
+        "icon": "icons:star"
+      },
+      {
+        "property": "disabled",
+        "description": "Disabled field",
+        "inputMethod": "boolean",
+        "required": false,
+        "icon": "icons:block"
+      }
+    ],
+    "advanced": []
+  }
+}

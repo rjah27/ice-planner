@@ -1,0 +1,47 @@
+{
+  "canScale": true,
+  "canPosition": true,
+  "canEditSource": false,
+  "gizmo": {
+    "title": "Team Summary",
+    "description": "Display calculated team cost summary with formatted currency",
+    "icon": "icons:assessment",
+    "color": "green",
+    "groups": ["Display", "Calculator", "Sports"],
+    "handles": [
+      {
+        "type": "summary",
+        "source": "teamName"
+      }
+    ],
+    "meta": {
+      "author": "Jericho P. Reyes"
+    }
+  },
+  "settings": {
+    "configure": [
+      {
+        "property": "teamName",
+        "description": "Team name to display",
+        "inputMethod": "textfield",
+        "required": false,
+        "icon": "icons:group"
+      },
+      {
+        "property": "costPerPlayer",
+        "description": "Cost per player",
+        "inputMethod": "number",
+        "required": false,
+        "icon": "icons:attach-money"
+      },
+      {
+        "property": "numberOfPlayers",
+        "description": "Number of players on the team",
+        "inputMethod": "number",
+        "required": false,
+        "icon": "icons:group"
+      }
+    ],
+    "advanced": []
+  }
+}
