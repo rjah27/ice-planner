@@ -1,13 +1,13 @@
 import { html, fixture, expect } from '@open-wc/testing';
-import "../ice-app.js";
+import "../ice-planner.js";
 
-describe("IceApp test", () => {
+describe("IcePlanner test", () => {
   let element;
   beforeEach(async () => {
     element = await fixture(html`
-      <ice-app
+      <ice-planner
         title="title"
-      ></ice-app>
+      ></ice-planner>
     `);
   });
 
