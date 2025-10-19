@@ -116,6 +116,8 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
       // Show the link if clipboard doesn't work
       prompt('Copy this link:', shareURL);
     }
+
+    
   }
 
   // Lit reactive properties
@@ -152,7 +154,6 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
         max-width: 800px;
         margin: 0 auto;
         padding: var(--ddd-spacing-4);
-        background-color: rgba(2,2,2,0.3);
         border-radius: var(--ddd-radius-md);
         box-shadow: var(--ddd-boxShadow-sm);
       }
@@ -163,6 +164,7 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
         font-size: var(--ddd-font-size-xl);
         margin-bottom: var(--ddd-spacing-6);
         font-weight: var(--ddd-font-weight-bold);
+        padding-bottom: var(--ddd-spacing-20);
       }
       
       .form-grid {
@@ -176,6 +178,7 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--ddd-spacing-4);
+        
       }
       
       .full-width {
@@ -183,22 +186,16 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
       }
       
       /* Input styling for visibility and hover effects - targeting actual input elements */
-      cost-input #input {
-        border: 2px solid var(--ddd-theme-default-white);
-        border-radius: var(--ddd-radius-sm);
-        padding: var(--ddd-spacing-2);
-        background-color: var(--ddd-theme-default-limestoneLight);
-        transition: all 0.3s ease;
-        color: #2c2c2c;
+      input {
+        border: 1px solid white;
       }
       
-      cost-input #input:hover {
+      input:hover {
         border-color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-bg-accent);
         box-shadow: var(--ddd-boxShadow-sm);
       }
       
-      cost-input #input:focus {
+      input:focus {
         border-color: var(--ddd-theme-accent);
         box-shadow: 0 0 0 3px var(--ddd-theme-accent-light);
         outline: none;
@@ -214,7 +211,7 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
       button {
         background-color: var(--ddd-theme-primary);
         color: var(--ddd-theme-bg-primary);
-        border: 1px solid var(--ddd-theme-default-shrineLight);
+        border: 2px solid var(--ddd-theme-default-shrineLight);
         padding: var(--ddd-spacing-3) var(--ddd-spacing-6);
         border-radius: var(--ddd-radius-sm);
         font-size: var(--ddd-font-weight-regular);
@@ -285,12 +282,13 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
       
       /* Custom dark mode styles */
       :host(.dark-mode) {
-        background: var(--ddd-theme-default-gradient-hero);
         color: white;
+        background-color:rgba(255, 255, 255, 0.4);
       }
       
-      :host(.dark-mode) .container {
-        background-color: var(--ddd-theme-default-white);
+      :host(.dark-mode) .container{
+        background-color: rgba(255, 255, 255, 0.4);
+        transition: background-color 0.3s ease;
         color: black;
       }
       
@@ -324,21 +322,12 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
       }
       
       /* Dark mode input styling - targeting actual input elements */
-      :host(.dark-mode) cost-input input {
-        border-color: #666;
+      :host(.dark-mode) input {
+        border: 1px solid #2c2c2c;
+        
         background-color: #f5f5f5;
       }
       
-      :host(.dark-mode) cost-input input:hover {
-        border-color: #999;
-        background-color: #fff;
-        box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
-      }
-      
-      :host(.dark-mode) cost-input input:focus {
-        border-color: #ccc;
-        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
-      }
     `];
   }
 
@@ -394,9 +383,11 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
     if (field === 'numberOfPlayers' && this[field] < 1) {
       this[field] = 1;
     }
-    
- 
+    this.calculateCost();
   }
+  
+
+  
   
   // Toggle dark mode
   darkMode() {
@@ -418,7 +409,7 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
           <cost-input 
             class="full-width"
             label="${this.t.teamName}"
-            .value="${this.teamName}"
+            .value="${this.teamName ?? ''}"
             @value-changed="${(e) => this.handleInputChange('teamName', e)}"
           ></cost-input>
           
@@ -473,16 +464,15 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
         </div>
         
         <div class="button-group">
-          <button @click="${this.calculateCost}">${this.t.calculate}</button>
           <button class="secondary" @click="${this.clearForm}">${this.t.clear}</button>
           <button @click="${this.shareResults}">${this.t.shareResults}</button>
           <button @click="${this.darkMode}">${this.t.toggleDarkMode}</button>
         </div>
         
         <team-summary 
-          .teamName="${this.teamName}"
-          .costPerPlayer="${this.costPerPlayer}"
-          .numberOfPlayers="${this.numberOfPlayers}"
+          .teamName="${this.teamName ?? ''}"
+          .costPerPlayer="${this.costPerPlayer ?? 0}"
+          .numberOfPlayers="${this.numberOfPlayers ?? 1}"
         ></team-summary>
       </div>
     `;
